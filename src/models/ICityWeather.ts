@@ -44,5 +44,13 @@ interface IWeather {
 }
 
 export interface ICity {
+    id: number;
     name: string;
+    sys: {
+        country: string;
+    };
+    coord: {
+        lon: number;
+        lat: number;
+    };
 }

@@ -1,20 +1,21 @@
-import { ICity } from '../models/ICityWeather';
+import { ICity, ICityWeather } from '../models/ICityWeather';
+import { getCityWeather } from './cityWeatherService';
 
-export const getCities = (): ICity[] => {
+export const getCitiesFromLocalStorage = (): ICity[] => {
     return localStorage.getItem('cities')
         ? JSON.parse(localStorage.getItem('cities') as string)
         : [];
 };
 
-export const addCity = (city: string): void => {
-    const cities = getCities();
-    cities.push({ name: city });
+export const addCityToLocalStorage = async (city: ICity) => {
+    const cities = getCitiesFromLocalStorage();
+    cities.push(city);
     localStorage.setItem('cities', JSON.stringify(cities));
 };
 
-export const removeCity = (city: string): void => {
-    const cities = getCities();
-    const index = cities.findIndex((c) => c.name === city);
+export const removeCityFromLocalStorage = (id: number): void => {
+    const cities = getCitiesFromLocalStorage();
+    const index = cities.findIndex((c) => c.id === id);
     cities.splice(index, 1);
     localStorage.setItem('cities', JSON.stringify(cities));
 };

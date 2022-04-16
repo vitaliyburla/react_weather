@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
 import { useStyles } from './styles';
-import { Box, Typography, Skeleton } from '@mui/material';
+import { Box, Typography, Skeleton, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { ICityWeather } from '../../../models/ICityWeather';
 import { timestampToDatetime } from '../../../utils/dateFormat';
+import { deleteCity } from '../../../store/reducers/citiesWeather/actionCreators';
+import { useTypedDispatch } from '../../../hooks/redux';
 
 interface ICityCard {
     cityWeather: ICityWeather;
@@ -10,8 +13,19 @@ interface ICityCard {
 
 const CityCard: FC<ICityCard> = ({ cityWeather }) => {
     const classes = useStyles();
+    const dispatch = useTypedDispatch();
+
+    const deleteCityHandler = () => {
+        dispatch(deleteCity(cityWeather.id));
+    };
+
     return (
         <Box className={classes.card}>
+            <Box className={classes.deleteCardButton} id='delete-button'>
+                <IconButton onClick={deleteCityHandler}>
+                    <DeleteIcon />
+                </IconButton>
+            </Box>
             <Box className={classes.cardContent}>
                 <Box className={classes.cardContentText}>
                     <Box>

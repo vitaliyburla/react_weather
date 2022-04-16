@@ -4,7 +4,8 @@ import CityCard, { CityCardSkeleton } from './CityCard';
 import { useStyles } from './styles';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import { fetchCities } from '../../store/reducers/citiesWeather/actionCreators';
-import { getCities } from '../../services/cityService';
+import { getCitiesFromLocalStorage } from '../../services/cityService';
+import AddCityCard from './AddCityCard';
 
 const CityCardsList: FC = () => {
     const classes = useStyles();
@@ -20,8 +21,13 @@ const CityCardsList: FC = () => {
     return (
         <Grid container className={classes.cardsGrid} spacing={2}>
             {isLoading &&
-                getCities().map((city) => (
-                    <Grid item xs={4} className={classes.cardsGridItem}>
+                getCitiesFromLocalStorage().map((city) => (
+                    <Grid
+                        item
+                        xs={4}
+                        className={classes.cardsGridItem}
+                        key={city.id}
+                    >
                         <CityCardSkeleton name={city.name} />
                     </Grid>
                 ))}
@@ -29,12 +35,15 @@ const CityCardsList: FC = () => {
                 <Grid
                     item
                     xs={4}
-                    key={cityWeather.name}
+                    key={cityWeather.id}
                     className={classes.cardsGridItem}
                 >
                     <CityCard cityWeather={cityWeather} />
                 </Grid>
             ))}
+            <Grid item xs={4} className={classes.cardsGridItem}>
+                <AddCityCard />
+            </Grid>
         </Grid>
     );
 };

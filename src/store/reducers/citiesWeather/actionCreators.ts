@@ -1,13 +1,17 @@
 import { AppDispatch } from '../..';
 import { weatherSlice } from './weatherSlice';
-import { ICityWeather } from '../../../models/ICityWeather';
-import { getCities } from '../../../services/cityService';
+import { ICity, ICityWeather } from '../../../models/ICityWeather';
+import {
+    addCityToLocalStorage,
+    getCitiesFromLocalStorage,
+    removeCityFromLocalStorage,
+} from '../../../services/cityService';
 import { getCityWeather } from '../../../services/cityWeatherService';
 
 export const fetchCities = () => async (dispatch: AppDispatch) => {
     dispatch(weatherSlice.actions.fetchCitiesStart());
     try {
-        const cities = getCities();
+        const cities = getCitiesFromLocalStorage();
         if (cities.length === 0) {
             dispatch(weatherSlice.actions.fetchCitiesError('No cities'));
             return;
@@ -29,5 +33,22 @@ export const updateCity = (city: string) => async (dispatch: AppDispatch) => {
     try {
         const weather = await getCityWeather(city);
         dispatch(weatherSlice.actions.updateCityWeather(weather));
-    } catch (error: any) {}
+    } catch (error: any) {
+        throw new Error(error);
+    }
+};
+
+export const addCity = (name: string) => async (dispatch: AppDispatch) => {
+    try {
+        const city = await getCityWeather(name);
+        dispatch(weatherSlice.actions.addCity(city));
+        addCityToLocalStorage(city as ICity);
+    } catch (error: any) {
+        throw new Error(error);
+    }
+};
+
+export const deleteCity = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(weatherSlice.actions.deleteCity(id));
+    removeCityFromLocalStorage(id);
 };

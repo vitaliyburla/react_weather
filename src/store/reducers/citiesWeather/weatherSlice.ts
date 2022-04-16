@@ -36,6 +36,14 @@ export const weatherSlice = createSlice({
                     : cityWeather
             );
         },
+        deleteCity: (state, action: PayloadAction<number>) => {
+            state.citiesWeather = state.citiesWeather.filter(
+                (cityWeather) => cityWeather.id !== action.payload
+            );
+        },
+        addCity: (state, action: PayloadAction<ICityWeather>) => {
+            state.citiesWeather.push(action.payload);
+        },
     },
 });
 

@@ -3,17 +3,16 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
     card: {
-        background: theme.palette.secondary.light,
         width: '100%',
         height: '100%',
         boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
-        position: 'relative',
+        background: theme.palette.primary.light,
+        transition: 'all 0.05s ease-in-out',
+        color: theme.palette.text.primary,
         '&:hover': {
             cursor: 'pointer',
         },
-        '&:hover #delete-button': {
-            opacity: 1,
-        },
+        position: 'relative',
     },
     cardContent: {
         padding: '1rem',
@@ -21,19 +20,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    cardContentText: {
-        color: theme.palette.text.primary,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-    },
-    deleteCardButton: {
+    closeAddCardButton: {
         position: 'absolute',
         top: '0.5rem',
-        right: '0.5rem',
-        opacity: 0,
-        transition: 'all 0.2s ease-in-out',
+        left: '0.5rem',
     },
 }));
