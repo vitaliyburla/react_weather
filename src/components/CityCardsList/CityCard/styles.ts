@@ -8,8 +8,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
         position: 'relative',
+        borderRadius: '0.2rem',
+        transition: 'all 0.2s ease-in-out',
         '&:hover': {
             cursor: 'pointer',
+            boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.2)',
         },
         '&:hover #delete-button': {
             opacity: 1,
@@ -31,8 +34,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     deleteCardButton: {
         position: 'absolute',
-        top: '0.5rem',
-        right: '0.5rem',
+        top: '0.25rem',
+        right: '0.25rem',
         opacity: 0,
         transition: 'all 0.2s ease-in-out',
     },

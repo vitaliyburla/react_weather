@@ -8,10 +8,7 @@ const API = axios.create({
     },
 });
 
-export const getCityWeather = async (
-    city: string,
-    units: string = 'metric'
-) => {
+export const getCityWeather = async (city: string, units: string) => {
     try {
         const response = await API.get('/weather', {
             params: {

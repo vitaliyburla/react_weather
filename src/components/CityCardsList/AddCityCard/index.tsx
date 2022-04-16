@@ -1,23 +1,28 @@
-import { Box, IconButton, Input, TextField, Typography } from '@mui/material';
+import { Box, IconButton, Input, Typography } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { useStyles } from './styles';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useTypedDispatch } from '../../../hooks/redux';
+import { useTypedDispatch, useTypedSelector } from '../../../hooks/redux';
 import { addCity } from '../../../store/reducers/citiesWeather/actionCreators';
 const AddCityCard: FC = () => {
     const classes = useStyles();
     const dispatch = useTypedDispatch();
+    const { unit } = useTypedSelector((state) => state.weatherReducer);
 
     const [isOpened, setIsOpened] = useState(false);
     const [cityName, setCityName] = useState('');
 
-    const addCardHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const addCardHandler = (
+        event:
+            | React.FormEvent<HTMLFormElement>
+            | React.MouseEvent<HTMLButtonElement>
+    ) => {
         event.stopPropagation();
         setIsOpened(true);
         if (cityName.length > 0) {
-            dispatch(addCity(cityName));
+            dispatch(addCity(cityName, unit));
             setIsOpened(false);
             setCityName('');
         }
@@ -30,9 +35,13 @@ const AddCityCard: FC = () => {
         setIsOpened(false);
         setCityName('');
     };
-
     return (
-        <Box className={classes.card} onClick={() => setIsOpened(true)}>
+        <Box
+            className={classes.card}
+            onClick={() => {
+                setIsOpened(true);
+            }}
+        >
             <Box className={classes.cardContent}>
                 {!isOpened ? (
                     <>
@@ -50,15 +59,20 @@ const AddCityCard: FC = () => {
                             </IconButton>
                         </Box>
                         <Box>
-                            <Input
-                                placeholder='Enter city name'
-                                color='primary'
-                                onChange={(e) => setCityName(e.target.value)}
-                                value={cityName}
-                            />
-                            <IconButton onClick={addCardHandler}>
-                                <AddIcon />
-                            </IconButton>
+                            <form onSubmit={addCardHandler}>
+                                <Input
+                                    placeholder='Enter city name'
+                                    color='primary'
+                                    inputRef={(input) => input && input.focus()}
+                                    onChange={(e) =>
+                                        setCityName(e.target.value)
+                                    }
+                                    value={cityName}
+                                />
+                                <IconButton onClick={addCardHandler}>
+                                    <AddIcon />
+                                </IconButton>
+                            </form>
                         </Box>
                     </>
                 )}

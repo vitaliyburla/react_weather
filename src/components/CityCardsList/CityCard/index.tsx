@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { ICityWeather } from '../../../models/ICityWeather';
 import { timestampToDatetime } from '../../../utils/dateFormat';
 import { deleteCity } from '../../../store/reducers/citiesWeather/actionCreators';
-import { useTypedDispatch } from '../../../hooks/redux';
+import { useTypedDispatch, useTypedSelector } from '../../../hooks/redux';
 
 interface ICityCard {
     cityWeather: ICityWeather;
@@ -14,8 +14,10 @@ interface ICityCard {
 const CityCard: FC<ICityCard> = ({ cityWeather }) => {
     const classes = useStyles();
     const dispatch = useTypedDispatch();
+    const { unit } = useTypedSelector((state) => state.weatherReducer);
 
-    const deleteCityHandler = () => {
+    const deleteCityHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
         dispatch(deleteCity(cityWeather.id));
     };
 
@@ -37,7 +39,8 @@ const CityCard: FC<ICityCard> = ({ cityWeather }) => {
                         </Typography>
                     </Box>
                     <Typography variant='h2' sx={{ fontWeight: '300' }}>
-                        {Math.round(cityWeather.main.temp)}&#0176;C
+                        {Math.round(cityWeather.main.temp)}
+                        {unit.badge}
                     </Typography>
                 </Box>
                 <Box

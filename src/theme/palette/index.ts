@@ -1,6 +1,6 @@
 const palette = {
     primary: {
-        main: '#D8EFF2',
+        main: '#BCEBF2',
     },
     secondary: {
         light: '#FFFFFF',
@@ -12,6 +12,7 @@ const palette = {
     },
     text: {
         secondary: '#FFFFFF',
+        flaring: '#3FDDF2',
     },
 };
 

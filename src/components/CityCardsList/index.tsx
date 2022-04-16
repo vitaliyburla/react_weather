@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react';
-import { Grid } from '@mui/material';
+import React, { FC, useCallback, useEffect } from 'react';
+import { Box, Grid } from '@mui/material';
 import CityCard, { CityCardSkeleton } from './CityCard';
 import { useStyles } from './styles';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
@@ -10,41 +10,55 @@ import AddCityCard from './AddCityCard';
 const CityCardsList: FC = () => {
     const classes = useStyles();
     const dispatch = useTypedDispatch();
-    const { citiesWeather, isLoading, error } = useTypedSelector(
+    const { citiesWeather, isLoading, unit } = useTypedSelector(
         (state) => state.weatherReducer
     );
 
+    const fetchCitiesCallback = useCallback(() => {
+        dispatch(fetchCities(unit));
+    }, [dispatch, unit]);
+
     useEffect(() => {
-        dispatch(fetchCities());
-    }, []);
+        fetchCitiesCallback();
+    }, [fetchCitiesCallback]);
 
     return (
-        <Grid container className={classes.cardsGrid} spacing={2}>
-            {isLoading &&
-                getCitiesFromLocalStorage().map((city) => (
+        <Box className={classes.cardsSection}>
+            <Grid container className={classes.cardsGrid} spacing={2}>
+                {isLoading &&
+                    getCitiesFromLocalStorage().map((city) => (
+                        <Grid
+                            item
+                            xs={4}
+                            className={classes.cardsGridItem}
+                            key={city.id}
+                        >
+                            <CityCardSkeleton name={city.name} />
+                        </Grid>
+                    ))}
+                {citiesWeather.map((cityWeather) => (
                     <Grid
                         item
-                        xs={4}
+                        lg={4}
+                        md={6}
+                        xs={12}
+                        key={cityWeather.id}
                         className={classes.cardsGridItem}
-                        key={city.id}
                     >
-                        <CityCardSkeleton name={city.name} />
+                        <CityCard cityWeather={cityWeather} />
                     </Grid>
                 ))}
-            {citiesWeather.map((cityWeather) => (
                 <Grid
                     item
-                    xs={4}
-                    key={cityWeather.id}
+                    lg={4}
+                    md={6}
+                    xs={12}
                     className={classes.cardsGridItem}
                 >
-                    <CityCard cityWeather={cityWeather} />
+                    <AddCityCard />
                 </Grid>
-            ))}
-            <Grid item xs={4} className={classes.cardsGridItem}>
-                <AddCityCard />
             </Grid>
-        </Grid>
+        </Box>
     );
 };
 

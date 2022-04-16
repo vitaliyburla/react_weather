@@ -7,9 +7,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
         background: theme.palette.primary.light,
-        transition: 'all 0.05s ease-in-out',
+        transition: 'all 0.2s ease-in-out',
         color: theme.palette.text.primary,
+        borderRadius: '0.2rem',
         '&:hover': {
+            boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.2)',
             cursor: 'pointer',
         },
         position: 'relative',
@@ -25,7 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     closeAddCardButton: {
         position: 'absolute',
-        top: '0.5rem',
-        left: '0.5rem',
+        top: '0.25rem',
+        left: '0.25rem',
     },
 }));

@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { temperatureUnits } from '../../../constants/temperatureUnits';
 import { ICityWeather } from '../../../models/ICityWeather';
+import { ITemperatureUnit } from '../../../models/ITemperatureUnit';
 
 interface IWeatherState {
+    unit: ITemperatureUnit;
     citiesWeather: ICityWeather[];
     isLoading: boolean;
     error: string;
 }
 
 const initialState: IWeatherState = {
+    unit: temperatureUnits.celsius,
     citiesWeather: [],
     isLoading: false,
     error: '',
@@ -43,6 +47,13 @@ export const weatherSlice = createSlice({
         },
         addCity: (state, action: PayloadAction<ICityWeather>) => {
             state.citiesWeather.push(action.payload);
+        },
+        updateTemperatureUnits: (
+            state,
+            action: PayloadAction<ITemperatureUnit>
+        ) => {
+            state.unit = action.payload;
+            state.citiesWeather = [];
         },
     },
 });
