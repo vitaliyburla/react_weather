@@ -1,5 +1,4 @@
 import { ICity, ICityWeather } from '../models/ICityWeather';
-import { getCityWeather } from './cityWeatherService';
 
 export const getCitiesFromLocalStorage = (): ICity[] => {
     return localStorage.getItem('cities')

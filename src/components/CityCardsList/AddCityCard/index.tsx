@@ -2,17 +2,17 @@ import { Box, IconButton, Input, Typography } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { useStyles } from './styles';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CloseIcon from '@mui/icons-material/Close';
-
+import useInput from '../../../hooks/useInput';
 import { useTypedDispatch, useTypedSelector } from '../../../hooks/redux';
 import { addCity } from '../../../store/reducers/citiesWeather/actionCreators';
 const AddCityCard: FC = () => {
     const classes = useStyles();
     const dispatch = useTypedDispatch();
     const { unit } = useTypedSelector((state) => state.weatherReducer);
-
     const [isOpened, setIsOpened] = useState(false);
-    const [cityName, setCityName] = useState('');
+    const cityName = useInput('');
 
     const addCardHandler = (
         event:
@@ -21,10 +21,10 @@ const AddCityCard: FC = () => {
     ) => {
         event.stopPropagation();
         setIsOpened(true);
-        if (cityName.length > 0) {
-            dispatch(addCity(cityName, unit));
+        if (cityName.value.length > 0) {
+            dispatch(addCity(cityName.value, unit));
             setIsOpened(false);
-            setCityName('');
+            cityName.reset();
         }
     };
 
@@ -33,7 +33,7 @@ const AddCityCard: FC = () => {
     ) => {
         event.stopPropagation();
         setIsOpened(false);
-        setCityName('');
+        cityName.reset();
     };
     return (
         <Box
@@ -64,13 +64,11 @@ const AddCityCard: FC = () => {
                                     placeholder='Enter city name'
                                     color='primary'
                                     inputRef={(input) => input && input.focus()}
-                                    onChange={(e) =>
-                                        setCityName(e.target.value)
-                                    }
-                                    value={cityName}
+                                    onChange={cityName.onChange}
+                                    value={cityName.value}
                                 />
                                 <IconButton onClick={addCardHandler}>
-                                    <AddIcon />
+                                    <ArrowForwardIcon />
                                 </IconButton>
                             </form>
                         </Box>

@@ -36,18 +36,19 @@ const CityCardsList: FC = () => {
                             <CityCardSkeleton name={city.name} />
                         </Grid>
                     ))}
-                {citiesWeather.map((cityWeather) => (
-                    <Grid
-                        item
-                        lg={4}
-                        md={6}
-                        xs={12}
-                        key={cityWeather.id}
-                        className={classes.cardsGridItem}
-                    >
-                        <CityCard cityWeather={cityWeather} />
-                    </Grid>
-                ))}
+                {!isLoading &&
+                    citiesWeather.map((cityWeather) => (
+                        <Grid
+                            item
+                            lg={4}
+                            md={6}
+                            xs={12}
+                            key={cityWeather.id}
+                            className={classes.cardsGridItem}
+                        >
+                            <CityCard cityWeather={cityWeather} />
+                        </Grid>
+                    ))}
                 <Grid
                     item
                     lg={4}

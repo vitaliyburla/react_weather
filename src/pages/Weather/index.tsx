@@ -9,7 +9,7 @@ const WeatherPage: FC = () => {
     return (
         <Container maxWidth='lg' sx={{ pt: '2rem' }}>
             <Box className={classes.headerSection}>
-                <Box className={classes.headerText}>
+                <Box>
                     <Typography variant={'h1'}>Get the latest</Typography>
                     <Typography variant={'h1'} sx={{ color: 'text.flaring' }}>
                         weather information

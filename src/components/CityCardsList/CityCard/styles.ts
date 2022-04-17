@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
             cursor: 'pointer',
             boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.2)',
         },
-        '&:hover #delete-button': {
+        '&:hover #popup-button': {
             opacity: 1,
         },
     },
@@ -35,6 +35,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     deleteCardButton: {
         position: 'absolute',
         top: '0.25rem',
+        right: '0.25rem',
+        opacity: 0,
+        transition: 'all 0.2s ease-in-out',
+    },
+    refreshCardButton: {
+        position: 'absolute',
+        bottom: '0.25rem',
         right: '0.25rem',
         opacity: 0,
         transition: 'all 0.2s ease-in-out',
