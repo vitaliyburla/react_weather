@@ -29,7 +29,9 @@ const CityCardsList: FC = () => {
                     getCitiesFromLocalStorage().map((city) => (
                         <Grid
                             item
-                            xs={4}
+                            lg={4}
+                            md={6}
+                            xs={12}
                             className={classes.cardsGridItem}
                             key={city.id}
                         >

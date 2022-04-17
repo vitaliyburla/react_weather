@@ -6,6 +6,7 @@ import { ITemperatureUnit } from '../../../models/ITemperatureUnit';
 interface IWeatherState {
     unit: ITemperatureUnit;
     citiesWeather: ICityWeather[];
+    selectedCityWeather: ICityWeather;
     isLoading: boolean;
     error: string;
 }
@@ -13,6 +14,7 @@ interface IWeatherState {
 const initialState: IWeatherState = {
     unit: temperatureUnits.celsius,
     citiesWeather: [],
+    selectedCityWeather: {} as ICityWeather,
     isLoading: false,
     error: '',
 };
@@ -54,6 +56,15 @@ export const weatherSlice = createSlice({
         ) => {
             state.unit = action.payload;
             state.citiesWeather = [];
+        },
+        setIsLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
+        },
+        setSelectedCity: (state, action: PayloadAction<ICityWeather>) => {
+            state.selectedCityWeather = action.payload;
+        },
+        removeSelectedCity: (state) => {
+            state.selectedCityWeather = {} as ICityWeather;
         },
     },
 });

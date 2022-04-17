@@ -4,7 +4,7 @@ import { Box, Typography, Skeleton, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { ICityWeather } from '../../../models/ICityWeather';
-import { timestampToDatetime } from '../../../utils/dateFormat';
+import { timestampToDatetime } from '../../../utils/formatter';
 import {
     deleteCity,
     updateCity,

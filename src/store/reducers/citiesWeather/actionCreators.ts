@@ -63,3 +63,15 @@ export const deleteCity = (id: number) => async (dispatch: AppDispatch) => {
 export const updateUnit = (unit: ITemperatureUnit) => {
     return weatherSlice.actions.updateTemperatureUnits(unit);
 };
+
+export const setCurrentCity =
+    (city: string, unit: ITemperatureUnit) => async (dispatch: AppDispatch) => {
+        dispatch(weatherSlice.actions.setIsLoading(true));
+        const weather = await getCityWeather(city, unit.value);
+        dispatch(weatherSlice.actions.setSelectedCity(weather));
+        dispatch(weatherSlice.actions.setIsLoading(false));
+    };
+
+export const removeCurrentCity = () => {
+    return weatherSlice.actions.removeSelectedCity();
+};
