@@ -1,17 +1,17 @@
+export const unitValue = {
+    CELSIUS: 'metric',
+    FAHRENHEIT: 'imperial',
+};
+
 export const temperatureUnits = {
     celsius: {
-        value: 'metric',
+        value: unitValue.CELSIUS,
         badge: '°C',
         speed: 'm/s',
     },
     fahrenheit: {
-        value: 'imperial',
+        value: unitValue.FAHRENHEIT,
         badge: `°F`,
         speed: 'mph',
-    },
-    kelvin: {
-        value: 'standard',
-        badge: '°K',
-        speed: 'm/s',
     },
 };

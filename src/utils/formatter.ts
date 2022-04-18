@@ -1,7 +1,15 @@
 import moment from 'moment';
 
-export const timestampToDatetime = (timestamp: number, format: string) => {
+export const timestampToDatetimeUTC = (timestamp: number, format: string) => {
     return moment(moment.utc()).add(timestamp, 'seconds').format(format);
+};
+
+export const timestampFromUTC = (timestamp: number) => {
+    return moment(moment.utc()).add(timestamp, 'seconds').unix().valueOf();
+};
+
+export const timestampToDatetime = (timestamp: number, format: string) => {
+    return moment.unix(timestamp).utc().format(format);
 };
 
 export const degToCompass = (angle: number) => {

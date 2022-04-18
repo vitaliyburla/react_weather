@@ -7,7 +7,7 @@ import {
     setCurrentCity,
     removeCurrentCity,
 } from '../../store/reducers/citiesWeather/actionCreators';
-import { timestampToDatetime, degToCompass } from '../../utils/formatter';
+import { timestampToDatetimeUTC, degToCompass } from '../../utils/formatter';
 import TemperatureUnits from '../TemperatureUnits';
 import { useStyles } from './styles';
 import AirIcon from '@mui/icons-material/Air';
@@ -233,12 +233,12 @@ const CityWeatherInfo = () => {
                                             >
                                                 <Grid item mb={1}>
                                                     <Typography variant='body2'>
-                                                        {timestampToDatetime(
+                                                        {timestampToDatetimeUTC(
                                                             selectedCityWeather.timezone,
                                                             'HH:mm'
                                                         )}
                                                         &nbsp;•&nbsp;
-                                                        {timestampToDatetime(
+                                                        {timestampToDatetimeUTC(
                                                             selectedCityWeather.timezone,
                                                             'DD/MM'
                                                         )}
@@ -255,7 +255,11 @@ const CityWeatherInfo = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Box className={classes.infoCard}>
-                                <HourlyWeatherChart />
+                                <Box
+                                    className={`${classes.infoCardContent} ${classes.horizontalScrollable}`}
+                                >
+                                    <HourlyWeatherChart />
+                                </Box>
                             </Box>
                         </Grid>
                     </Grid>

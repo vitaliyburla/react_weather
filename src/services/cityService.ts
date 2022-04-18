@@ -1,4 +1,4 @@
-import { ICity, ICityWeather } from '../models/ICityWeather';
+import { ICity } from '../models/ICityWeather';
 
 export const getCitiesFromLocalStorage = (): ICity[] => {
     return localStorage.getItem('cities')

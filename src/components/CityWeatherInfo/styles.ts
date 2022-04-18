@@ -17,4 +17,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         width: '100%',
     },
+    horizontalScrollable: {
+        overflowX: 'scroll',
+        '-ms-overflow-style': 'none',
+        scrollbarWidth: 'none',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
 }));

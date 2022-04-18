@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { temperatureUnits } from '../../constants/temperatureUnits';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import { ITemperatureUnit } from '../../models/ITemperatureUnit';
@@ -33,12 +33,6 @@ const TemperatureUnits: FC = () => {
                     aria-label='centered'
                 >
                     {temperatureUnits.fahrenheit.badge}
-                </ToggleButton>
-                <ToggleButton
-                    value={temperatureUnits.kelvin}
-                    aria-label='right aligned'
-                >
-                    {temperatureUnits.kelvin.badge}
                 </ToggleButton>
             </ToggleButtonGroup>
         </div>
