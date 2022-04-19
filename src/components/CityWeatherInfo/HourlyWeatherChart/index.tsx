@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Skeleton, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { unitValue } from '../../../constants/temperatureUnits';
 import { useTypedSelector } from '../../../hooks/redux';
@@ -81,10 +81,11 @@ const HourlyWeatherChart = () => {
 
     const temperatureIndicatorPercentage = (temp: number) => {
         if (unit.value === unitValue.FAHRENHEIT) {
+            const celsiusToFahrenheit = ((temp - 32) * 5) / 9;
             if (isTemperatureAboveZero(temp)) {
-                return (((temp - 32) * 5) / 9 / 100) * 3;
+                return (celsiusToFahrenheit / 100) * 3;
             } else {
-                return (((temp - 32) * 5) / 9 / 100) * -3;
+                return (celsiusToFahrenheit / 100) * -3;
             }
         } else {
             return (temp / 100) * 3.3;
@@ -98,50 +99,64 @@ const HourlyWeatherChart = () => {
     };
 
     return (
-        <Grid
-            container
-            direction='row'
-            columnSpacing={2}
-            wrap={'nowrap'}
-            sx={{ height: '100%' }}
-        >
-            {hourlyData?.hours?.map((item, index) => (
-                <Grid item key={index}>
-                    <Grid container direction='column' sx={{ height: '100%' }}>
-                        <Grid item>
-                            <Typography variant={'body1'} textAlign='center'>
-                                {item.time}
-                            </Typography>
-                        </Grid>
-                        <Grid
-                            item
-                            sx={{
-                                mt: `${
-                                    temperatureToGraphHeight(item.temperature) +
-                                    1
-                                }rem`,
-                            }}
-                        >
-                            <Box className={classes.coldIndicator}>
-                                <Box
-                                    className={classes.hotIndicator}
+        <>
+            {hourlyData.hours ? (
+                <Grid
+                    container
+                    direction='row'
+                    columnSpacing={2}
+                    wrap={'nowrap'}
+                    sx={{ height: '100%' }}
+                >
+                    {hourlyData?.hours?.map((item, index) => (
+                        <Grid item key={index}>
+                            <Grid
+                                container
+                                direction='column'
+                                sx={{ height: '100%' }}
+                            >
+                                <Grid item>
+                                    <Typography
+                                        variant={'body1'}
+                                        textAlign='center'
+                                    >
+                                        {item.time}
+                                    </Typography>
+                                </Grid>
+                                <Grid
+                                    item
                                     sx={{
-                                        background: coldToHotIndicator(
-                                            item.temperature
-                                        ),
+                                        mt: `${
+                                            temperatureToGraphHeight(
+                                                item.temperature
+                                            ) + 1
+                                        }rem`,
                                     }}
                                 >
-                                    <Typography variant={'body2'}>
-                                        {item.temperature}
-                                        {unit.badge}
-                                    </Typography>
-                                </Box>
-                            </Box>
+                                    <Box className={classes.coldIndicator}>
+                                        <Box
+                                            className={classes.hotIndicator}
+                                            sx={{
+                                                background: coldToHotIndicator(
+                                                    item.temperature
+                                                ),
+                                            }}
+                                        >
+                                            <Typography variant={'body2'}>
+                                                {item.temperature}
+                                                {unit.badge}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    ))}
                 </Grid>
-            ))}
-        </Grid>
+            ) : (
+                <Skeleton variant='rectangular' width='100%' height='10rem' />
+            )}
+        </>
     );
 };
 

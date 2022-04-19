@@ -58,9 +58,10 @@ const CityWeatherInfo = () => {
                                 <Box className={classes.infoCardContent}>
                                     <Grid
                                         container
-                                        direction='row'
                                         justifyContent='space-between'
+                                        direction='row'
                                         sx={{ height: '100%', width: '100%' }}
+                                        className={classes.mainCardGrid}
                                     >
                                         <Grid item>
                                             <Grid container direction='row'>
@@ -258,7 +259,9 @@ const CityWeatherInfo = () => {
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
-                            <Box className={classes.infoCard}>
+                            <Box
+                                className={`${classes.infoCard} ${classes.chartCard}`}
+                            >
                                 <Box
                                     className={`${classes.infoCardContent} ${classes.horizontalScrollable}`}
                                 >

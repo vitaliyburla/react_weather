@@ -12,10 +12,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
         background: theme.palette.secondary.light,
         boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)',
     },
+    chartCard: {
+        minHeight: '12rem',
+    },
     infoCardContent: {
         padding: '1.5rem',
         height: '100%',
         width: '100%',
+    },
+    mainCardGrid: {
+        [theme.breakpoints.down('sm')]: {},
     },
     horizontalScrollable: {
         overflowX: 'scroll',

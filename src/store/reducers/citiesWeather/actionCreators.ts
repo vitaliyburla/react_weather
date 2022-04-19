@@ -15,7 +15,11 @@ export const fetchCities =
         try {
             const cities = getCitiesFromLocalStorage();
             if (cities.length === 0) {
-                dispatch(weatherSlice.actions.fetchCitiesError('No cities'));
+                dispatch(
+                    weatherSlice.actions.fetchCitiesSuccess(
+                        [] as ICityWeather[]
+                    )
+                );
                 return;
             }
             const citiesWeather = await Promise.all(

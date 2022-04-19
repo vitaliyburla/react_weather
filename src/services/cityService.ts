@@ -8,7 +8,17 @@ export const getCitiesFromLocalStorage = (): ICity[] => {
 
 export const addCityToLocalStorage = async (city: ICity) => {
     const cities = getCitiesFromLocalStorage();
-    cities.push(city);
+    cities.push({
+        id: city.id,
+        name: city.name,
+        sys: {
+            country: city.sys.country,
+        },
+        coord: {
+            lon: city.coord.lon,
+            lat: city.coord.lat,
+        },
+    });
     localStorage.setItem('cities', JSON.stringify(cities));
 };
 
