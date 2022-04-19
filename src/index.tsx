@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import ThemeConfig from './theme';
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <ThemeConfig>
                 <App />
             </ThemeConfig>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );

@@ -34,7 +34,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "webpack",
+        "build": "react-scripts build",
         "test": "jest",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",

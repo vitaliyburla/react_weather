@@ -7,8 +7,8 @@ export interface IRoute {
 }
 
 export enum RouteNames {
-    WEATHER = '#/weather',
-    WEATHER_IN_CITY = '#/weather/:city',
+    WEATHER = '/weather',
+    WEATHER_IN_CITY = '/weather/:city',
 }
 
 export const publicRoutes: IRoute[] = [

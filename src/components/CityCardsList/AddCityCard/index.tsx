@@ -1,4 +1,4 @@
-import { Box, IconButton, Input, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Input, Typography } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { useStyles } from './styles';
 import AddIcon from '@mui/icons-material/Add';
@@ -60,16 +60,24 @@ const AddCityCard: FC = () => {
                         </Box>
                         <Box>
                             <form onSubmit={addCardHandler}>
-                                <Input
-                                    placeholder='Enter city name'
-                                    color='primary'
-                                    inputRef={(input) => input && input.focus()}
-                                    onChange={cityName.onChange}
-                                    value={cityName.value}
-                                />
-                                <IconButton onClick={addCardHandler}>
-                                    <ArrowForwardIcon />
-                                </IconButton>
+                                <Grid container direction='row'>
+                                    <Grid item xs={10}>
+                                        <Input
+                                            placeholder='Enter city name'
+                                            color='primary'
+                                            inputRef={(input) =>
+                                                input && input.focus()
+                                            }
+                                            onChange={cityName.onChange}
+                                            value={cityName.value}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <IconButton onClick={addCardHandler}>
+                                            <ArrowForwardIcon />
+                                        </IconButton>
+                                    </Grid>
+                                </Grid>
                             </form>
                         </Box>
                     </>

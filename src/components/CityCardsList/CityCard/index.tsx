@@ -72,6 +72,7 @@ const CityCard: FC<ICityCard> = ({ cityWeather }) => {
                 </Box>
                 <Box
                     component='img'
+                    sx={{ objectFit: 'contain' }}
                     alt='weather'
                     src={`http://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png`}
                 />
