@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
@@ -7,7 +7,7 @@ import {
     setCurrentCity,
     removeCurrentCity,
 } from '../../store/reducers/citiesWeather/actionCreators';
-import { timestampToDatetimeUTC, degToCompass } from '../../utils/formatter';
+import { timezoneToDatetimeUTC, degToCompass } from '../../utils/formatter';
 import TemperatureUnits from '../TemperatureUnits';
 import { useStyles } from './styles';
 import AirIcon from '@mui/icons-material/Air';
@@ -237,12 +237,12 @@ const CityWeatherInfo = () => {
                                             >
                                                 <Grid item mb={1}>
                                                     <Typography variant='body2'>
-                                                        {timestampToDatetimeUTC(
+                                                        {timezoneToDatetimeUTC(
                                                             selectedCityWeather.timezone,
                                                             'HH:mm'
                                                         )}
                                                         &nbsp;•&nbsp;
-                                                        {timestampToDatetimeUTC(
+                                                        {timezoneToDatetimeUTC(
                                                             selectedCityWeather.timezone,
                                                             'DD/MM'
                                                         )}

@@ -11,7 +11,7 @@ const AddCityCard: FC = () => {
     const classes = useStyles();
     const dispatch = useTypedDispatch();
     const { unit } = useTypedSelector((state) => state.weatherReducer);
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, setIsOpened] = useState<boolean>(false);
     const cityName = useInput('');
 
     const addCardHandler = (

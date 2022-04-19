@@ -4,7 +4,7 @@ import { Box, Typography, Skeleton, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { ICityWeather } from '../../../models/ICityWeather';
-import { timestampToDatetimeUTC } from '../../../utils/formatter';
+import { timezoneToDatetimeUTC } from '../../../utils/formatter';
 import {
     deleteCity,
     updateCity,
@@ -12,7 +12,7 @@ import {
 import { useTypedDispatch, useTypedSelector } from '../../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
 
-interface ICityCard {
+export interface ICityCard {
     cityWeather: ICityWeather;
 }
 
@@ -54,12 +54,12 @@ const CityCard: FC<ICityCard> = ({ cityWeather }) => {
                     <Box>
                         <Typography variant='h5'>{cityWeather.name}</Typography>
                         <Typography variant='subtitle2'>
-                            {timestampToDatetimeUTC(
+                            {timezoneToDatetimeUTC(
                                 cityWeather.timezone,
                                 'HH:mm'
                             )}
                             &nbsp;•&nbsp;
-                            {timestampToDatetimeUTC(
+                            {timezoneToDatetimeUTC(
                                 cityWeather.timezone,
                                 'DD/MM'
                             )}

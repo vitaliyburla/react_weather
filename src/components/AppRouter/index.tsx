@@ -9,7 +9,7 @@ const AppRouter: FC = () => {
                 <Route
                     key={route.path}
                     path={route.path}
-                    element={<route.component />}
+                    element={React.createElement(route.component)}
                 />
             ))}
             <Route path='*' element={<Navigate to={RouteNames.WEATHER} />} />

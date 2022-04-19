@@ -7,7 +7,7 @@ import TemperatureUnits from '../../components/TemperatureUnits';
 const WeatherPage: FC = () => {
     const classes = useStyles();
     return (
-        <Container maxWidth='lg' sx={{ pt: '2rem' }}>
+        <Container maxWidth='lg' sx={{ pt: '2rem', pb: '2rem' }}>
             <Box className={classes.headerSection}>
                 <Box>
                     <Typography variant={'h1'}>Get the latest</Typography>

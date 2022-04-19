@@ -13,7 +13,6 @@ const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
     const theme = createTheme({
         palette,
         typography,
-        // components,
     });
 
     return (

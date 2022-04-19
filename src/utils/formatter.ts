@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const timestampToDatetimeUTC = (timestamp: number, format: string) => {
+export const timezoneToDatetimeUTC = (timestamp: number, format: string) => {
     return moment(moment.utc()).add(timestamp, 'seconds').format(format);
 };
 

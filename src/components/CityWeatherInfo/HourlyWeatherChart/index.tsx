@@ -59,7 +59,7 @@ const HourlyWeatherChart = () => {
         const minTemp = temperatureArray && Math.min(...temperatureArray);
         const maxTemp = temperatureArray && Math.max(...temperatureArray);
         return { minTemp, maxTemp, hours };
-    }, [data.hourly, cityTime]);
+    }, [data.hourly, cityTime, selectedCityWeather.timezone]);
 
     const hourPercentage = useMemo(
         () => 100 / (hourlyData?.maxTemp - hourlyData?.minTemp),
