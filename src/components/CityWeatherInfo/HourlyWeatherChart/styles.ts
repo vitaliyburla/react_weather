@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme: Theme) => ({
     coldIndicator: {
         background: 'rgba(0, 255, 0, 0.5)',
-        width: '2.5rem',
+        width: '3rem',
         height: '1.5rem',
         borderRadius: '0.2rem',
     },

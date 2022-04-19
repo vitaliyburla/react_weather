@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
@@ -15,6 +15,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import WaterIcon from '@mui/icons-material/Water';
 import HourlyWeatherChart from './HourlyWeatherChart';
+import BackButton from '../common/BackButton';
 
 const CityWeatherInfo = () => {
     const classes = useStyles();
@@ -49,6 +50,9 @@ const CityWeatherInfo = () => {
             {!isLoading && selectedCityWeather.id && (
                 <Box className={classes.weatherInfoContainer}>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <BackButton path={RouteNames.WEATHER} />
+                        </Grid>
                         <Grid item xs={12}>
                             <Box className={classes.infoCard}>
                                 <Box className={classes.infoCardContent}>

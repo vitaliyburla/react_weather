@@ -7,6 +7,7 @@ import { getCityWeatherHourly } from '../../../services/cityWeatherService';
 import {
     timestampToDatetime,
     timestampFromUTC,
+    filterByDay,
 } from '../../../utils/formatter';
 import { useStyles } from './styles';
 
@@ -45,6 +46,9 @@ const HourlyWeatherChart = () => {
     const hourlyData = useMemo(() => {
         const hours = data?.hourly
             ?.filter((time) => time.dt > cityTime)
+            ?.filter((time) =>
+                filterByDay(time.dt, selectedCityWeather.timezone)
+            )
             ?.map((hour) => ({
                 time: timestampToDatetime(hour.dt, 'HH'),
                 temperature: Math.round(hour.temp),

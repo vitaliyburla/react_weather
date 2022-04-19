@@ -19,6 +19,7 @@ const TemperatureUnits: FC = () => {
             <ToggleButtonGroup
                 value={unit}
                 exclusive
+                size={'small'}
                 onChange={handleAlignment}
                 aria-label='text alignment'
             >

@@ -5,7 +5,7 @@ export const timestampToDatetimeUTC = (timestamp: number, format: string) => {
 };
 
 export const timestampFromUTC = (timestamp: number) => {
-    return moment(moment.utc()).add(timestamp, 'seconds').unix().valueOf();
+    return moment.utc().add(timestamp, 'seconds').unix().valueOf();
 };
 
 export const timestampToDatetime = (timestamp: number, format: string) => {
@@ -24,4 +24,9 @@ export const degToCompass = (angle: number) => {
         '↖ NW',
     ];
     return directions[Math.round(angle / 45) % 8];
+};
+
+export const filterByDay = (timestamp: number, timezone: number) => {
+    const today = moment().utc().add(timezone, 'seconds').startOf('day');
+    return moment.unix(timestamp).utc().startOf('day').isSame(today);
 };
