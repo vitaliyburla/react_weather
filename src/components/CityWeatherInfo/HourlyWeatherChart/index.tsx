@@ -46,10 +46,8 @@ const HourlyWeatherChart = () => {
     const hourlyData = useMemo(() => {
         const hours = data?.hourly
             ?.filter((time) => time.dt > cityTime)
-            ?.filter((time) =>
-                filterByDay(time.dt, selectedCityWeather.timezone)
-            )
-            ?.map((hour) => ({
+            .slice(0, 25)
+            .map((hour) => ({
                 time: timestampToDatetime(hour.dt, 'HH'),
                 temperature: Math.round(hour.temp),
             }));
